@@ -22,10 +22,13 @@ jobs:
             const client_payload = `{"version": "${process.env.VERSION}" }`;
             const owner = `${process.env.OWNER}`;
             const repo = `${process.env.REPO}`;
+            console.log(client_payload);
+            console.log(owner);
+            console.log(repo);
             const result = await github.rest.repos.createDispatchEvent({
               owner: owner,
               repo: repo,
               event_type: 'rgbds_release',
               client_payload: client_payload
             });
-            console.log(result);.
+            console.log(result);
