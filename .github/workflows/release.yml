@@ -40,5 +40,5 @@ jobs:
           REPO: projectx_using      
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh workflow run --repo ${{env.OWNER}}/${{env.REPO}} --field version=${{env.VERSION}}
+          gh workflow run autoupdate.yml --repo ${{env.OWNER}}/${{env.REPO}} --field version=${{env.VERSION}}
           
