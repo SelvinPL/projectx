@@ -12,14 +12,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v7
+        env:
+          VERSION: ${{ github.event.release.tag_name }}
+          OWNER: SelvinPL
+          REPO: projectx_using
         with:
           github-token: ${{ secrets.DISPATCH_PAT }}
           script: |
-            console.log("${{github.event.release.tag_name}}")
+            const client_payload = `{"version": "${ process.env.VERSION }" }`;
+            const owner = `${ process.env.OWNER }`;
+            const repo = `${ process.env.REPO }`;
             const result = await github.rest.repos.createDispatchEvent({
-              owner: 'SelvinPL',
-              repo: 'projectx_using',
+              owner: owner,
+              repo: repo,
               event_type: 'rgbds_release',
-              client_payload: {"version": "${{github.event.release.tag_name}}" }
-            })
+              client_payload: client_payload
+            });
             console.log(result);.
