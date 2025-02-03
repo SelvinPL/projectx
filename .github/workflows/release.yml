@@ -8,8 +8,17 @@ permissions:
   contents: write
 jobs:
   build:
-    name: Do nothing
+    name: Dispatch rgbds-live
     runs-on: ubuntu-latest
     steps:
-      - name: Do nothing
-        run: cd .
+      - uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.DISPATCH_PAT }}
+          script: |
+            const result = await github.rest.repos.createDispatchEvent({
+              owner: 'SelvinPL',
+              repo: 'projectx_using',
+              event_type: 'rgbds_release',
+              client_payload: {"version": "${{github.event.release.tag_name}}"}
+            })
+            console.log(result);.
