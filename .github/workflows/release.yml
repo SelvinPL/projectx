@@ -38,7 +38,7 @@ jobs:
           OWNER: SelvinPL
           # dest repo: would be rgbds-live
           REPO: projectx_using      
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DISPATCH_PAT }}
         run: |
           gh workflow run autoupdate.yml --repo ${{env.OWNER}}/${{env.REPO}} --field version=${{env.VERSION}}
           
