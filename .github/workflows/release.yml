@@ -1,0 +1,15 @@
+name: release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+jobs:
+  build:
+    name: Do nothing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Do nothing
+        run: cd .
