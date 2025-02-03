@@ -19,7 +19,7 @@ jobs:
         with:
           github-token: ${{ secrets.DISPATCH_PAT }}
           script: |
-            const client_payload = `{"version": "${process.env.VERSION}" }`;
+            const client_payload = {"version": "${process.env.VERSION}" };
             const owner = `${process.env.OWNER}`;
             const repo = `${process.env.REPO}`;
             console.log(client_payload);
