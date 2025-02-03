@@ -15,10 +15,11 @@ jobs:
         with:
           github-token: ${{ secrets.DISPATCH_PAT }}
           script: |
+            console.log("${{github.event.release.tag_name}}")
             const result = await github.rest.repos.createDispatchEvent({
               owner: 'SelvinPL',
               repo: 'projectx_using',
               event_type: 'rgbds_release',
-              client_payload: {"version": ${{github.event.release.tag_name}}}
+              client_payload: {"version": "${{github.event.release.tag_name}}" }
             })
             console.log(result);.
